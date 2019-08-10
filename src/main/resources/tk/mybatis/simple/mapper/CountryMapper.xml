@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tk.mybatis.simple.mapper">
-    <select id="selectAll" resultType="Country">
-    select * from country
+    <select id="selectAll" resultType="Country" parameterType="Country">
+    select * from country where id =#{id} or countrycode = #{countrycode}
   </select>
 </mapper>
