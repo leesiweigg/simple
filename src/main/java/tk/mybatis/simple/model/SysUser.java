@@ -15,7 +15,7 @@ public class SysUser {
 
     private String userEmail;
 
-    private String userInfo;
+    private String  userInfo;
 
     private byte[] headImg;
 
