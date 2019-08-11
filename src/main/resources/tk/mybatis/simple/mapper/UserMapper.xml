@@ -34,9 +34,75 @@
     </insert>
 
     <insert id="addOneWithIdBackInSelectKey">
-        insert into sys_user(user_name,user_password,user_email,user_info,head_img,create_time) values ( #{userName}, #{userPassword}, #{userEmail}, #{userInfo}, #{headImg}, #{createTime})
+        insert into sys_user(user_name,user_password,<if test="userEmail != null and userEmail !=''">user_email,</if>user_info,head_img,create_time) values ( #{userName}, #{userPassword}, <if test="userEmail != null and userEmail !=''">#{userEmail},</if> #{userInfo}, #{headImg}, #{createTime})
         <selectKey keyProperty="id" keyColumn="id" resultType="long" order="AFTER">
             select last_insert_id()
         </selectKey>
     </insert>
+
+    <select id="selectByIdOrUserName" resultMap="userMap">
+        select *
+        from sys_user
+        where 1=1
+        <choose>
+            <when test="id != null">
+                and id = #{id}
+            </when>
+            <when test="userName !=null and userName != ''">
+                and user_name = #{userName}
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectByIds" resultMap="userMap">
+        select *
+        from sys_user
+        <where>
+        <if test="ids != null and ids.size() gt 0">
+        id in
+            <foreach collection="ids" open="(" close=")" index="i" item="id" separator=",">
+                #{id}+#{i}
+            </foreach>
+        </if>
+        </where>
+    </select>
+
+    <select id="selectByMap" resultMap="userMap">
+        select *
+        from sys_user
+        where
+        <foreach collection="_parameter" separator="or" item="value"  index="key">
+            ${key} = #{value}
+        </foreach>
+    </select>
+
+    <select id="selectByMap2" resultMap="userMap">
+        select *
+        from sys_user
+        where
+        <foreach collection="query" separator="or" item="value"  index="key">
+            ${key} = #{value}
+        </foreach>
+    </select>
+
+    <select id="selectBySysUser" resultMap="userMap">
+        <!--select *
+        from sys_user
+        where
+        id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>-->
+        <bind name="print" value="@tk.mybatis.util.StringUtil@print(_parameter)"/>
+        #{print}
+    </select>
+
+    <select id="selectBy">
+        /**/
+        <bind name="print" value="@tk.mybatis.util.StringUtil@print(user)"/>
+    </select>
+
 </mapper>

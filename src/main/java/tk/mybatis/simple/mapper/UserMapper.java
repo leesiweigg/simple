@@ -1,5 +1,7 @@
 package tk.mybatis.simple.mapper;
 
+import org.apache.ibatis.annotations.Param;
+import org.w3c.dom.ls.LSInput;
 import tk.mybatis.simple.model.SysUser;
 
 import java.util.List;
@@ -22,4 +24,16 @@ public interface UserMapper {
     int addOneWithIdBack(SysUser sysUser);
 
     int addOneWithIdBackInSelectKey(SysUser sysUser);
+
+    List<SysUser> selectByIdOrUserName(SysUser sysUser);
+
+    List<SysUser> selectByIds(@Param("ids") List<Long> ids);
+
+    List<SysUser> selectByMap(Map<Object,Object> map);
+
+    List<SysUser> selectByMap2(Map<Object,Object> map);
+
+    List<SysUser> selectBySysUser(SysUser sysUser);
+
+    List<SysUser> selectBy(@Param("user") SysUser sysUser);
 }
