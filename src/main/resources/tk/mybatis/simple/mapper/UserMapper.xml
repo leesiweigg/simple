@@ -24,4 +24,19 @@
     <select id="selectAllToMap" resultMap="map">
         select id from sys_user
     </select>
+
+    <insert id="addOne">
+        insert into sys_user values (#{id}, #{userName}, #{userPassword}, #{userEmail}, #{userInfo}, #{headImg}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="addOneWithIdBack" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user(user_name,user_password,user_email,user_info,head_img,create_time) values ( #{userName}, #{userPassword}, #{userEmail}, #{userInfo}, #{headImg}, #{createTime})
+    </insert>
+
+    <insert id="addOneWithIdBackInSelectKey">
+        insert into sys_user(user_name,user_password,user_email,user_info,head_img,create_time) values ( #{userName}, #{userPassword}, #{userEmail}, #{userInfo}, #{headImg}, #{createTime})
+        <selectKey keyProperty="id" keyColumn="id" resultType="long" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
 </mapper>

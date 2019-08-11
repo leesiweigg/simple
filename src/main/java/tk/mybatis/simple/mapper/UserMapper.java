@@ -16,4 +16,10 @@ public interface UserMapper {
     List<SysUser> selectAll();
 
     List<Map<String,Long>> selectAllToMap();
+
+    int addOne(SysUser sysUser);
+
+    int addOneWithIdBack(SysUser sysUser);
+
+    int addOneWithIdBackInSelectKey(SysUser sysUser);
 }

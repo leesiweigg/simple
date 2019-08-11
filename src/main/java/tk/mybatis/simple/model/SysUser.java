@@ -20,6 +20,7 @@ public class SysUser {
     private byte[] headImg;
 
     private Date createTime;
+    //private LocalTime createTime;
 
 
 
