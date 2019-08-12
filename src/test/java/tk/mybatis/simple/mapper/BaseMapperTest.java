@@ -31,7 +31,7 @@ public class BaseMapperTest {
         }
     }
 
-    public SqlSession getSqlSession(){
+     SqlSession getSqlSession(){
         return sqlSessionFactory.openSession();
     }
  }

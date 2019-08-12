@@ -5,8 +5,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import tk.mybatis.simple.model.SysUser;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 /**
@@ -24,7 +22,7 @@ public class UserMapperTest extends BaseMapperTest{
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<SysUser> sysUsers = mapper.selectAll();
         sqlSession.close();
-        System.out.println("sysUsers = " + sysUsers);
+        log.info("SysUsers{}",sysUsers);
     }
 
     @Test
