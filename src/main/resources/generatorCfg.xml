@@ -1,0 +1,40 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="database,properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    	<property name="javaFileEncoding" value="UTF-8"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="projects.commons.mybatis.MyMapper"/>
+            <!--<property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>-->
+            <property name="swagger" value="true"/>
+            <property name="lombok" value="ToString"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${mysql.driver}"
+                        connectionURL="${mysql.url}"
+                        userId="${mysql.userName}"
+                        password="${mysql.passWord}">
+            <property name="useInformationSchema" value="true" />
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="tk.mybatis.simple.model" targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.ccb.bm.persistence.xml.simple.financial"  targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.ccb.bm.persistence.mapper.stock.simple.financial" targetProject="src/main/java" type="XMLMAPPER" />
+
+        <table tableName="m_financial_account_amount" domainObjectName="FinancialAccountAmount">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
