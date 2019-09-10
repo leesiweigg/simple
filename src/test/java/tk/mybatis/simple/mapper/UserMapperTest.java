@@ -5,6 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import tk.mybatis.simple.model.SysUser;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -167,5 +170,37 @@ public class UserMapperTest extends BaseMapperTest{
         sysUser.setUserName("lala");
         mapper.selectBy(sysUser);
         sqlSession.close();
+    }
+
+    @Test
+    public void testTime(){
+        /*LocalDateTime now = LocalDateTime.now();
+        System.out.println("now = " + now);
+        Date from = Date.from(now.toInstant(ZoneOffset.ofHours(8)));
+        System.out.println("from = " + from);
+        LocalDateTime localDateTime = now.plusDays(1L);
+        LocalDateTime of = LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonth(), localDateTime.getDayOfMonth(), 0, 0, 0);
+        System.out.println("of = " + of);
+        System.out.println("localDateTime = " + localDateTime);
+        String yyyyMMddHHmmss = of.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        System.out.println("yyyyMMddHHmmss = " + yyyyMMddHHmmss);
+        System.out.println(String.format("%d%d%d000000",localDateTime.getYear(),localDateTime.getMonthValue(),localDateTime.getDayOfMonth()));*/
+        LocalDateTime time = LocalDateTime.parse("20190816170305", DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        System.out.println("time = " + time);
+        LocalDateTime now = LocalDateTime.now();
+        boolean after = now.isAfter(time);
+        System.out.println("after = " + after);
+    }
+
+    @Test
+    public void testStrFormat(){
+        BigDecimal one = new BigDecimal(10);
+        BigDecimal two = new BigDecimal(9);
+        System.out.println(one.compareTo(two));
+    }
+
+    private void increment(Integer i) {
+        i++;
+        System.out.println("i = " + i);
     }
 }
