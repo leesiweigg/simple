@@ -1,8 +1,5 @@
 package tk.mybatis.simple.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 描述
  *
@@ -11,12 +8,7 @@ import java.util.List;
  */
 public class BClass{
 
-    public void f(){
-        ArrayList<Object> list = new ArrayList<>(10);
-        method(list);
-    }
-
-    public void method(List<Object> list){
-        list.add("");
+    public static void main(String[] args) {
+        //List<Object> objects = new ArrayList<Long>(10);
     }
 }
