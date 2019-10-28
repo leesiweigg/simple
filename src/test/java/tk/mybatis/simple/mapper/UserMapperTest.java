@@ -5,7 +5,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import tk.mybatis.simple.model.SysUser;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -194,9 +193,7 @@ public class UserMapperTest extends BaseMapperTest{
 
     @Test
     public void testStrFormat(){
-        BigDecimal one = new BigDecimal(10);
-        BigDecimal two = new BigDecimal(9);
-        System.out.println(one.compareTo(two));
+        Boolean aTrue = Boolean.TRUE;
     }
 
     private void increment(Integer i) {
